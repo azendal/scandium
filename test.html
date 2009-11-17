@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>title</title>
+		<script src="scandium.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+		<script type="text/javascript" language="javascript" charset="utf-8" >
+
+			ACL.addRole( new ACL.Role( 'root' ) );
+			ACL.allow( 'allPrivileges', 'allResources', 'root', function(acl, args){
+				return args[0] == args[1];
+			});
+
+			ACL.addRole( new ACL.Role( 'office' ), 'root' );
+			ACL.deny( 'delete', 'article', 'office' );
+
+			ACL.addResource( new ACL.Resource( 'article' ) );
+
+			ACL.addRole( new ACL.Role( 'guest' ) );
+			ACL.addRole( new ACL.Role( 'staff' ), 'guest' );
+			ACL.addRole( new ACL.Role( 'editor' ), 'staff' );
+
+			ACL.allow( 'view', 'article', 'guest' );
+			ACL.allow( 'create', 'article', 'staff' );
+			ACL.allow( 'edit', 'article', 'editor' );
+
+			console.log( ACL.isAllowed( 'view', 'article', 'editor' ) );
+			console.log( ACL.isAllowed( 'delete', 'article', 'root', [1,2] ) );
+			console.log( ACL.isAllowed( 'delete', 'article', 'root', [1,1] ) );
+			console.log( ACL.isAllowed( 'delete', 'article', 'office' ) );
+			console.log( ACL );
+		
+		</script>
+	</head>
+	<body>
+	 test acl
+	</body>
+</html>
