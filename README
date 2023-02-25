@@ -1,0 +1,21 @@
+This is a JavaScript code implementing an Access Control List (ACL) system. ACL is a security model that defines access rights and permissions for users or roles to access specific resources or perform certain actions. The code defines an ACL object that contains methods for adding roles, resources, and rules, as well as methods for checking if a user or role has access to a resource or action.
+
+The ACL object contains several properties and methods, including:
+
+    TYPE_ALLOW and TYPE_DENY: Constants used to specify whether a rule allows or denies access.
+    roles: An object that stores all defined roles.
+    resources: An object that stores all defined resources.
+    rules: An object that stores all defined rules. Each rule is associated with a specific action, resource, and role.
+    Role: A constructor function used to create role objects.
+    Resource: A constructor function used to create resource objects.
+    addRole: A method used to add a new role to the ACL system. This method takes a role object and an optional array of parent roles as arguments.
+    addResource: A method used to add a new resource to the ACL system. This method takes a resource object and an optional array of privileges as arguments.
+    setRule: A method used to set a new rule for a specific action, resource, and role. This method takes an action, resource, role, an assertion function, and a type (allow or deny) as arguments.
+    allow: A method used to set an allow rule for a specific action, resource, and role. This method is a shortcut for calling setRule with the TYPE_ALLOW constant as the type argument.
+    deny: A method used to set a deny rule for a specific action, resource, and role. This method is a shortcut for calling setRule with the TYPE_DENY constant as the type argument.
+    isAllowed: A method used to check if a specific action is allowed for a specific resource and role. This method takes an action, resource, role, and an optional array of assert arguments as arguments.
+    isDenied: A method used to check if a specific action is denied for a specific resource and role. This method is a shortcut for calling isAllowed and negating its result.
+    hasRule: A method used to check if a specific rule exists for a given action, resource, and role.
+    getRule: A method used to retrieve a specific rule for a given action, resource, and role. This method also takes an optional "init" argument, which determines whether the method should try to retrieve a rule from a parent role if it does not exist for the given role.
+
+Overall, this ACL implementation provides a flexible and extensible way to define access control rules and check if a user or role has access to a resource or action.
